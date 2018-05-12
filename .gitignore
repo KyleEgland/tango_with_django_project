@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Ignore the secrets file
+settings_secret.py
+
+# Ignore the sqlite db
+db.sqlite3
