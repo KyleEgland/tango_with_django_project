@@ -66,6 +66,11 @@ def populate():
 
 
 def add_page(cat, title, url, views=0):
+    # the get_or_create() method is used as it will check to see if the entry
+    # has been created or not before attemmpting to create it.
+    # This method will return a tuple of (object, created) - object is a ref to
+    # the model instance that the method creates if the db entry was not found,
+    # created is a bool
     p = Page.objects.get_or_create(category=cat, title=title)[0]
     p.url = url
     p.views = views
