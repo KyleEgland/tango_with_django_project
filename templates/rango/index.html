@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<!-- Rango App Index HTML file -->
+<!-- Ensure that DOCTYPE declaration is always first -->
 
+<!-- This informs the Django template engine that there will be static files used -->
 {% load staticfiles %}
 
 <html>
@@ -16,6 +19,8 @@
         </div>
         <div>
             <a href="/rango/about">About</a><br />
+            <!-- Static template tag -->
+            <!-- "alt" is what gets shown if the image cannot be loaded -->
             <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" />
         </div>
     </body>
