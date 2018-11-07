@@ -1,5 +1,8 @@
 #! python
 # Script for populating the Rango App in the Tango with Django project
+# The below two lines are necessary in order to work with the Django models
+# that were created.  The django.setup() must be run before the models can be
+# imported and manipulated
 import django
 django.setup()
 from rango.models import Category
