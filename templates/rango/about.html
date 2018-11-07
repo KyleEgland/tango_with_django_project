@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Rango App About HTML file -->
+<!-- Ensure that DOCTYPE declaration is always first -->
+
+<!-- This informs the Django template engine that there will be static files used -->
+{% load staticfiles %}
+
+<html>
+
+    <head>
+        <title>Rango</title>
+    </head>
+
+    <body>
+        <h1>About</h1>
+
+        <div>
+            Rango says here is the about page!<br />
+        </div>
+
+        <div>
+            <a href="/rango/">Beginning</a><br />
+        </div>
+
+        <div>
+            <!-- Picture of me -->
+            <img src="{% static "images/kyle_profile_pic.jpg" %}" alt="Picture of Kyle" /><br />
+            This tutorial has been put together by Kyle.
+        </div>
+
+        <div>
+            <img src="{{ MEDIA_URL }}cat.jpg" />
+
+    </body>
+
+</html>
