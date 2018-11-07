@@ -1,6 +1,6 @@
 #! python3
-# Rango app views.py
-from django.http import HttpResponse
+# Rango app views.py file
+# from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -10,11 +10,11 @@ def index(request):
     context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
 
     # Return a rendered response to send to the client.  We make use of the
-    # shortcut function to make our lives easier.  Note that the first
-    # parameter is the template we wish to use
+    # shortcut function to make our lives easier.
+    # The render function takes in the user's request, the template, and the
+    # context dictionary.
     return render(request, 'rango/index.html', context=context_dict)
 
 
 def about(request):
-    return HttpResponse('Rango says here is the about page.</br>\
-Back to the <a href="/rango/">beginning</a>')
+    return render(request, 'rango/about.html')
