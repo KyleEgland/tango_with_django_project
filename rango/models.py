@@ -8,6 +8,8 @@ class Category(models.Model):
     # Specify the field(s), associated types, and any required or optional
     # parameters
     name = models.CharField(max_length=128, unique=True)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
 
     # This will allow the name of the class to be correctly displayed when it
     # is pluralized
