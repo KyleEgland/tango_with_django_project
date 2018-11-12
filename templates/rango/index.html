@@ -20,13 +20,20 @@
         </div>
 
         <div>
+            <!-- Check the context variable for categories -->
             {% if categories %}
+            <!-- Create an unordered list -->
             <ul>
+                <!-- Itterate through results -->
                 {% for category in categories %}
-                    <li>{{ category.name }}</li>
+                    <!-- Output the category name -->
+                    <li>
+                        <a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+                    </li>
                 {% endfor %}
             </ul>
             {% else %}
+                <!-- If no categories, display message -->
                 <strong>There are no categories present.</strng>
             {% endif %}
         </div>
