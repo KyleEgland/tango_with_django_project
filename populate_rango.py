@@ -4,12 +4,17 @@
 # that were created.  The django.setup() must be run before the models can be
 # imported and manipulated
 import os
+import random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'tango_with_django_project.settings')
 import django
 django.setup()
 from rango.models import Category
 from rango.models import Page
+
+
+def get_num():
+    return random.randint(1, 100)
 
 
 def populate():
@@ -21,27 +26,35 @@ def populate():
 
     python_pages = [
         {"title": "Official Python Tutorial",
-         "url": "http://docs.python.org/3/tutorial/"},
+         "url": "http://docs.python.org/3/tutorial/",
+         "views": get_num()},
         {"title": "How to Think like a Computer Scientist",
-         "url": "http://www.greenteapress.com/thinkpython/"},
+         "url": "http://www.greenteapress.com/thinkpython/",
+         "views": get_num()},
         {"title": "Learn Python in 10 Minutes",
-         "url": "http://www.korokithakis.net/tutorials/python/"}
+         "url": "http://www.korokithakis.net/tutorials/python/",
+         "views": get_num()}
     ]
 
     django_pages = [
         {"title": "Official Django Tutorial",
-         "url": "https://docs.djangoproject.com/en/1.11/intro/tutorial01/"},
+         "url": "https://docs.djangoproject.com/en/1.11/intro/tutorial01/",
+         "views": get_num()},
         {"title": "Django Rocks",
-         "url": "http://www.djangorocks.com/"},
+         "url": "http://www.djangorocks.com/",
+         "views": get_num()},
         {"title": "How to Tango with Django",
-         "url": "http://www.tangowithdjango.com/"}
+         "url": "http://www.tangowithdjango.com/",
+         "views": get_num()}
     ]
 
     other_pages = [
         {"title": "Bottle",
-         "url": "http://bottlepy.org/docs/dev/"},
+         "url": "http://bottlepy.org/docs/dev/",
+         "views": get_num()},
         {"title": "Flask",
-         "url": "http://flask.pocoo.org"}
+         "url": "http://flask.pocoo.org",
+         "views": get_num()}
     ]
 
     cats = {"Python": {"pages": python_pages,
@@ -66,7 +79,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data["views"], cat_data["likes"])
         for p in cat_data["pages"]:
-            add_page(c, p["title"], p["url"])
+            add_page(c, p["title"], p["url"], p["views"])
 
     # Print out the categories we have added
     for c in Category.objects.all():

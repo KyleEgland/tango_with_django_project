@@ -50,7 +50,9 @@ def index(request):
     # that will be passed to the template engine.
 
     category_list = Category.objects.order_by('-likes')[:5]
-    context_dict = {'categories': category_list}
+    page_list = Page.objects.order_by('-views')[:5]
+    context_dict = {'categories': category_list,
+                    'pages': page_list}
 
     # Return a rendered response to send to the client.  We make use of the
     # shortcut function to make our lives easier.

@@ -19,7 +19,9 @@
             <!-- <strong>{{ boldmessage }}</strong><br /> -->
         </div>
 
+        <!-- MOST LIKED CATEGORIES -->
         <div>
+            <h1>Most Liked Categores</h1>
             <!-- Check the context variable for categories -->
             {% if categories %}
             <!-- Create an unordered list -->
@@ -35,6 +37,27 @@
             {% else %}
                 <!-- If no categories, display message -->
                 <strong>There are no categories present.</strng>
+            {% endif %}
+        </div>
+
+        <!-- MOST VIEWED PAGES -->
+        <div>
+            <h1>Most Viewed Pages</h1>
+            <!-- Check the context variable for pages -->
+            {% if pages %}
+            <!-- Create an unordered list -->
+            <ul>
+                <!-- Itterate through results -->
+                {% for page in pages %}
+                    <!-- Output the category name -->
+                    <li>
+                        <a href="{{ page.url }}">{{ page.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <!-- If no categories, display message -->
+                <strong>There are no pages present.</strng>
             {% endif %}
         </div>
 
