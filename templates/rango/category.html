@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <!-- Rango app 'Category' Page Template -->
     <head>
         <title>Rango</title>
     </head>
@@ -22,7 +23,10 @@
         </div>
 
         <div>
-            <a href="/rango/">Back</a>
+            {% if category %}
+                <a href="/rango/category/{{category.slug}}/add_page">Add Page</a><br />
+            {% endif %}
+                <a href="/rango/">Index</a>
         </div>
 
     </body>
