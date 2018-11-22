@@ -1,5 +1,7 @@
 #! python
+#
 # Rango app forms.py file
+#
 from django import forms
 from rango.models import Page
 from rango.models import Category
@@ -9,7 +11,7 @@ class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
                            help_text="Please enter the category name")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    likes = forms.IntegerField(widget=forms.HiddenInput(), intial=0)
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     # An inline class to provide additional information on the form
@@ -39,3 +41,23 @@ class PageForm(forms.ModelForm):
         # or specify the fields to include (i.e. not include the category
         # field)
         # fields = ('title', 'url', 'views')
+
+    # Create a method that will add 'http://' if it doesn't begin with that or
+    # 'https'.  This is a Django framework override method.
+    def clean(self):
+        # Grab form data from the ModelForm dictionary attribute 'cleaned_data'
+        cleaned_data = self.cleaned_data
+        # Use the ".get()" method provided by the dictionary to get a value
+        # from the form - this case 'url'
+        url = cleaned_data.get('url')
+
+        # If url is not empty and doesn't start with 'http://' or 'https://',
+        # them prepend with 'http://'
+        if url and not url.startswith('http://'):
+            if url and not url.startswith('https://'):
+                url = 'http://' + url
+                cleaned_data['url'] = url
+
+                # Must always end the 'clean()'  method with this return,
+                # (returning 'cleaned_data') otherwise changes won't save
+                return cleaned_data
