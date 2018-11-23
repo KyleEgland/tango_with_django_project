@@ -1,9 +1,36 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    About
+{% endblock %}
+
+{% block body_block %}
+    <h1>About</h1>
+
+    <div>
+        Rango says here is the about page!<br />
+    </div>
+
+    <div>
+        <!-- Picture of me -->
+        <img src="{% static "images/kyle_profile_pic.jpg" %}" alt="Picture of Kyle" /><br />
+        This tutorial has been put together by Kyle.
+    </div>
+
+    <div>
+        <img src="{{ MEDIA_URL }}cat.jpg" />
+        Picture of a cat - because...instructions?
+    </div>
+{% endblock %}
+
+<!-- The following is the code before chapter 8 in Tango with Django -->
+<!-- <!DOCTYPE html> -->
 <!-- Rango App About HTML file -->
 <!-- Ensure that DOCTYPE declaration is always first -->
 
 <!-- This informs the Django template engine that there will be static files used -->
-{% load staticfiles %}
+<!-- {% load staticfiles %}
 
 <html>
 
@@ -22,15 +49,16 @@
             <a href="/rango/">Beginning</a><br />
         </div>
 
-        <div>
+        <div> -->
             <!-- Picture of me -->
-            <img src="{% static "images/kyle_profile_pic.jpg" %}" alt="Picture of Kyle" /><br />
+            <!-- <img src="{% static "images/kyle_profile_pic.jpg" %}" alt="Picture of Kyle" /><br />
             This tutorial has been put together by Kyle.
         </div>
 
         <div>
             <img src="{{ MEDIA_URL }}cat.jpg" />
+        </div>
 
     </body>
 
-</html>
+</html> -->
