@@ -1,0 +1,32 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
+    <h1>Rigster for Rango</h1>
+    <!-- Making use of the 'registered' variable from the view -->
+    <!-- Registered must be 'False' in order to get the forms -->
+    {% if registered %}
+        Rango says: <strong>Thank you for registering!</strong>
+        <a href="{% url 'index' %}">Return to the homepage.</a><br />
+    {% else %}
+        Rango says: <strong>Register here!</strong><br />
+        <!-- Attribute 'enctype' tells the browser to break up the file since we'll be receiving picture data -->
+        <!-- otherwise, the server won't receive the data from the user -->
+        <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+            <!-- csrf_token must be included in order to pass Django's cross-site forgery potection middleware -->
+            {% csrf_token %}
+
+            <!-- Display each form -->
+            <!-- Using the '.as_p' template function which puts each element in its own paragraph -->
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" name="submit" value="Register" />
+        </form>
+    {% endif %}
+{% endblock %}
