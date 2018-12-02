@@ -24,7 +24,9 @@
     {% endif %}
     <div>
         {% if category %}
-            <a href="/rango/category/{{category.slug}}/add_page">Add Page</a><br />
+            {% if user.is_authenticated %}
+                <a href="/rango/category/{{category.slug}}/add_page">Add Page</a><br />
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}
