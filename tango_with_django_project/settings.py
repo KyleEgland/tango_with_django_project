@@ -89,6 +89,9 @@ DATABASES = {
 
 
 # User authentication
+# Where to re-route unauthenticated users when attempting to access restriected
+# site areas
+LOGIN_URL = '/rango/login/'
 # Password Hashers
 # bcrypt will need to be installed for the following to work
 PASSWORD_HASHERS = [
@@ -103,8 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {'min_length': 6}
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', 'OPTIONS': {'min_length': 6}
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
