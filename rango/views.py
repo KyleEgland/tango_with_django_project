@@ -7,6 +7,8 @@ from django.core.urlresolvers import reverse
 # User auth imports
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 # Importing models in order to display
 from rango.models import Category
 from rango.models import Page
@@ -15,6 +17,27 @@ from rango.forms import CategoryForm
 from rango.forms import PageForm
 from rango.forms import UserForm
 from rango.forms import UserProfileForm
+
+
+# Use the login_required() decorator to ensure only those logged in can access
+# the view.
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out
+    logout(request)
+    # Take the user back to the homepage.
+    return HttpResponseRedirect(reverse('index'))
+
+
+# Demonstrating restricting views
+@login_required
+def restricted(request):
+
+    message = 'Since you\'re logged in, you can see this text!'
+
+    context_dict = {'message': message}
+
+    return render(request, 'rango/restricted.html', context_dict)
 
 
 # View to handle processing data from login form
@@ -115,6 +138,7 @@ def register(request):
                    'registered': registered})
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -139,6 +163,7 @@ def add_category(request):
     return render(request, 'rango/add_category.html', {'form': form})
 
 
+@login_required
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
